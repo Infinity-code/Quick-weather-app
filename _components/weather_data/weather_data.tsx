@@ -89,7 +89,7 @@ import "./weather.css"
                 "night":["night","text-slate-300"]
     }]},[]);
     const bgSet=DayNite({time:sunUpdate,sun:DaySun,moon:NightMoon}).type.render.displayName==="Moon"?bg[0].night:bg[0].day;
-    console.log(bgSet);
+    console.log(bgSet[1]);
     return(
         <div className={`w-screen h-screen bg-gradient-to-t ${bgSet[0]} sky grid grid-rows-10` }>
         <div className="row-span-9 grid grid-cols-4 ">
