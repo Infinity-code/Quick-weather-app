@@ -84,9 +84,10 @@ import "./weather.css"
 
  export function Main(){
     const sunUpdate=useRecoilValue(dayNite);
-    const bg=[{"day":["day","text-black"],
+    const bg=useMemo(()=>{
+     return [{"day":["day","text-black"],
                 "night":["night","text-slate-300"]
-    }];
+    }]},[]);
     const bgSet=DayNite({time:sunUpdate,sun:DaySun,moon:NightMoon}).type.render.displayName==="Moon"?bg[0].night:bg[0].day;
     return(
         <div className={`w-screen h-screen bg-gradient-to-t ${bgSet[0]} sky grid grid-rows-10` }>
