@@ -8,6 +8,7 @@ import { Sun, Moon, Milestone } from "lucide-react";
 import { Tree } from "../tree/tree";
 import { Sunny } from "../weather_chooser/weather_icons/sunny";
 
+import "./weather.css"
 
  export function Weather(){
     const setSun=useSetRecoilState(dayNite);
@@ -83,12 +84,12 @@ import { Sunny } from "../weather_chooser/weather_icons/sunny";
 
  export function Main(){
     const sunUpdate=useRecoilValue(dayNite);
-    const bg=[{"day":["from-sky-200 to-sky-300","text-black"],
-                "night":["from-blue-500 to-blue-700","text-slate-300"]
+    const bg=[{"day":["day","text-black"],
+                "night":["night","text-slate-300"]
     }];
     const bgSet=DayNite({time:sunUpdate,sun:DaySun,moon:NightMoon}).type.render.displayName==="Moon"?bg[0].night:bg[0].day;
     return(
-        <div className={`w-screen h-screen bg-gradient-to-t ${bgSet[0]} grid grid-rows-10` }>
+        <div className={`w-screen h-screen bg-gradient-to-t ${bgSet[0]} sky grid grid-rows-10` }>
         <div className="row-span-9 grid grid-cols-4 ">
           <div className="col-span-3 ">
             <div className="flex justify-start row-span-1 ">
