@@ -84,6 +84,7 @@ import "./weather.css"
 
  export function Main(){
     const sunUpdate=useRecoilValue(dayNite);
+    console.log(sunUpdate);
     const bg=useMemo(()=>{
      return [{"day":["day","text-black"],
                 "night":["night","text-slate-300"]
