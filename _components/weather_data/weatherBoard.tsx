@@ -83,8 +83,8 @@ export function WeatherBoard({props}:{props:{temp:number,min:number,max:number,f
                 </div>
 
             </div>
-            <div className="w-[15px] h-[440px] bg-slate-500 relative bottom-[280px] left-[10%]"></div>
-            <div className="w-[15px] h-[440px] bg-slate-500 relative bottom-[720px] left-[700px]"></div>
+            <div className="w-[15px] h-[440px] bg-slate-500 relative bottom-[275px] left-[10%]"></div>
+            <div className="w-[15px] h-[440px] bg-slate-500 relative bottom-[715px] left-[700px]"></div>
         </div>
     )
 }
