@@ -1,6 +1,6 @@
  "use client"
 
-import {  useEffect, useState } from "react";
+import {  useEffect, useState,useMemo } from "react";
 import { WeatherBoard } from "./weatherBoard";
 import { useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
 import { dayNite, refresher } from "@/State/atom";
@@ -84,10 +84,10 @@ import "./weather.css"
 
  export function Main(){
     const sunUpdate=useRecoilValue(dayNite);
-    const bg=[{"day":["day","text-black"],
+    const bg=useMemo(()=>{
+     return [{"day":["day","text-black"],
                 "night":["night","text-slate-300"]
-    }];
-    console.log(sunUpdate)
+    }]},[]);
     const bgSet=unix_Time(sunUpdate)==="Moon"?bg[0].night:bg[0].day;
     return(
         <div className={`w-screen h-screen bg-gradient-to-t ${bgSet[0]} grid grid-rows-10` }>
@@ -142,7 +142,6 @@ function DaySun(){
 function NightMoon(){
     return <Moon size={200} strokeWidth={1} fill="rgb(203 213 225)" color="rgb(203 213 225)" className="relative top-[20px] right-[130px]"/>
 }
-
 function unix_Time(time:{"sunrise":number,"sunset":number}[]):string{
     const sunriseUnix=time[0]?.sunrise *1000;
         const sunsetUnix=time[0]?.sunset*1000;
@@ -156,5 +155,4 @@ function unix_Time(time:{"sunrise":number,"sunset":number}[]):string{
         }
         return "Moon";
 }
-
  
