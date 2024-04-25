@@ -88,9 +88,9 @@ import "./weather.css"
      return [{"day":["day","text-black"],
                 "night":["night","text-slate-300"]
     }]},[]);
-    const bgSet=DayNite({time:sunUpdate,sun:DaySun,moon:NightMoon}).type.render.displayName==="Moon"?bg[0].night:bg[0].day;
+    const bgSet=unix_Time(sunUpdate)==="Moon"?bg[0].night:bg[0].day;
     return(
-        <div className={`w-screen h-screen bg-gradient-to-t ${bgSet[0]} sky grid grid-rows-10` }>
+        <div className={`w-screen h-screen bg-gradient-to-t ${bgSet[0]} grid grid-rows-10` }>
         <div className="row-span-9 grid grid-cols-4 ">
           <div className="col-span-3 ">
             <div className="flex justify-start row-span-1 ">
@@ -142,5 +142,17 @@ function DaySun(){
 function NightMoon(){
     return <Moon size={200} strokeWidth={1} fill="rgb(203 213 225)" color="rgb(203 213 225)" className="relative top-[20px] right-[130px]"/>
 }
-
+function unix_Time(time:{"sunrise":number,"sunset":number}[]):string{
+    const sunriseUnix=time[0]?.sunrise *1000;
+        const sunsetUnix=time[0]?.sunset*1000;
+        const sunriseDate=new Date(sunriseUnix);
+        const sunsetDate=new Date(sunsetUnix);
+        const sunrise=[sunriseDate.getHours(),sunriseDate.getMinutes()];
+        const sunset=[sunsetDate.getHours(),sunsetDate.getMinutes()];
+        const date=new Date();
+        if(date.getHours()>=sunrise[0] && date.getMinutes()>=sunrise[1] && date.getHours()<sunset[0] && date.getMinutes()<sunset[1]){
+            return "Sun";
+        }
+        return "Moon";
+}
  
